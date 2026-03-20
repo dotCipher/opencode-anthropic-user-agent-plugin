@@ -13,9 +13,25 @@ without patching OpenCode's cached plugin files by hand.
 
 ## Install
 
-This project is not published to npm yet.
+### npm package
 
-Right now, the supported way to use it is as a local plugin.
+Install the package in your OpenCode config directory:
+
+```sh
+cd ~/.config/opencode
+npm install opencode-anthropic-user-agent-plugin
+```
+
+Then add it to your `opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-anthropic-user-agent-plugin"]
+}
+```
+
+Restart OpenCode after installing.
 
 ### Local plugin setup
 
@@ -73,4 +89,16 @@ export OPENCODE_ANTHROPIC_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 - It intentionally avoids patching unrelated hosts.
 - Because it patches `fetch`, it should be compatible with OpenCode's built-in
   Anthropic auth plugin instead of replacing it.
-- This repo currently ships the plugin source only; it does not publish an npm package yet.
+
+## Publishing
+
+This repo includes a GitHub Actions workflow that publishes to npm on tags like:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+To enable publishing, add this repository secret:
+
+- `NPM_TOKEN`: an npm automation token with publish access for this package

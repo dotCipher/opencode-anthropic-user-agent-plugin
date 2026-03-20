@@ -5,8 +5,27 @@
   "type": "module",
   "license": "MIT",
   "main": "./index.js",
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "exports": {
     ".": "./index.js"
+  },
+  "scripts": {
+    "check": "node -e \"import('./index.js').then(() => console.log('ok'))\""
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotCipher/opencode-anthropic-user-agent-plugin.git"
+  },
+  "homepage": "https://github.com/dotCipher/opencode-anthropic-user-agent-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/dotCipher/opencode-anthropic-user-agent-plugin/issues"
   },
   "keywords": [
     "opencode",
@@ -14,6 +33,5 @@
     "anthropic",
     "oauth",
     "user-agent"
-  ],
-  "dependencies": {}
+  ]
 }
