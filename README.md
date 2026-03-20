@@ -23,7 +23,6 @@ Then add it to your OpenCode config:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
   "plugin": ["opencode-anthropic-user-agent-plugin"]
 }
 ```
