@@ -13,20 +13,38 @@ without patching OpenCode's cached plugin files by hand.
 
 ## Install
 
-### From npm
+This project is not published to npm yet.
 
-Add the package to your OpenCode config:
+Right now, the supported way to use it is as a local plugin.
 
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-anthropic-user-agent-plugin"]
-}
+### Local plugin setup
+
+1. Clone this repo somewhere on your machine.
+2. Create the OpenCode global plugins directory if it does not already exist:
+
+```sh
+mkdir -p ~/.config/opencode/plugins
 ```
 
-### As a local plugin
+3. Add a wrapper plugin file like this:
 
-If you are developing locally, symlink or copy `index.js` into:
+```js
+process.env.OPENCODE_ANTHROPIC_USER_AGENT =
+  process.env.OPENCODE_ANTHROPIC_USER_AGENT ||
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15";
+
+export { AnthropicUserAgentPlugin as default } from "/absolute/path/to/opencode-anthropic-user-agent-plugin/index.js";
+```
+
+4. Save that wrapper as:
+
+```text
+~/.config/opencode/plugins/anthropic-user-agent-plugin.js
+```
+
+5. Restart OpenCode.
+
+OpenCode will automatically load plugins from:
 
 - `~/.config/opencode/plugins/`
 - or `.opencode/plugins/`
@@ -55,3 +73,4 @@ export OPENCODE_ANTHROPIC_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 - It intentionally avoids patching unrelated hosts.
 - Because it patches `fetch`, it should be compatible with OpenCode's built-in
   Anthropic auth plugin instead of replacing it.
+- This repo currently ships the plugin source only; it does not publish an npm package yet.
