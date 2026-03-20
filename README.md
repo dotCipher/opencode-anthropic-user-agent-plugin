@@ -13,8 +13,6 @@ without patching OpenCode's cached plugin files by hand.
 
 ## Install
 
-### npm package
-
 Install the package in your OpenCode config directory:
 
 ```sh
@@ -22,7 +20,7 @@ cd ~/.config/opencode
 npm install opencode-anthropic-user-agent-plugin
 ```
 
-Then add it to your `opencode.json`:
+Then add it to `opencode.json`:
 
 ```json
 {
@@ -32,38 +30,6 @@ Then add it to your `opencode.json`:
 ```
 
 Restart OpenCode after installing.
-
-### Local plugin setup
-
-1. Clone this repo somewhere on your machine.
-2. Create the OpenCode global plugins directory if it does not already exist:
-
-```sh
-mkdir -p ~/.config/opencode/plugins
-```
-
-3. Add a wrapper plugin file like this:
-
-```js
-process.env.OPENCODE_ANTHROPIC_USER_AGENT =
-  process.env.OPENCODE_ANTHROPIC_USER_AGENT ||
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15";
-
-export { AnthropicUserAgentPlugin as default } from "/absolute/path/to/opencode-anthropic-user-agent-plugin/index.js";
-```
-
-4. Save that wrapper as:
-
-```text
-~/.config/opencode/plugins/anthropic-user-agent-plugin.js
-```
-
-5. Restart OpenCode.
-
-OpenCode will automatically load plugins from:
-
-- `~/.config/opencode/plugins/`
-- or `.opencode/plugins/`
 
 ## Default behavior
 
@@ -75,13 +41,15 @@ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, lik
 
 No environment variable is required.
 
-## Override
+## Optional override
 
 If you want a different value, override it with an environment variable:
 
 ```sh
 export OPENCODE_ANTHROPIC_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15'
 ```
+
+Then restart OpenCode.
 
 ## Notes
 
@@ -90,7 +58,7 @@ export OPENCODE_ANTHROPIC_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_
 - Because it patches `fetch`, it should be compatible with OpenCode's built-in
   Anthropic auth plugin instead of replacing it.
 
-## Publishing
+## Development / publishing
 
 This repo includes a GitHub Actions workflow that publishes to npm on tags like:
 
