@@ -13,14 +13,13 @@ without patching OpenCode's cached plugin files by hand.
 
 ## Install
 
-Install the package in your OpenCode config directory:
+Install the package:
 
 ```sh
-cd ~/.config/opencode
 npm install opencode-anthropic-user-agent-plugin
 ```
 
-Then add it to `opencode.json`:
+Then add it to your OpenCode config:
 
 ```json
 {
@@ -29,7 +28,7 @@ Then add it to `opencode.json`:
 }
 ```
 
-Restart OpenCode after installing.
+Restart OpenCode.
 
 ## Default behavior
 
