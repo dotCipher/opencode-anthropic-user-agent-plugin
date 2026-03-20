@@ -15,8 +15,5 @@
     "oauth",
     "user-agent"
   ],
-  "dependencies": {
-    "@opencode-ai/plugin": "1.2.20",
-    "@openauthjs/openauth": "0.4.3"
-  }
+  "dependencies": {}
 }

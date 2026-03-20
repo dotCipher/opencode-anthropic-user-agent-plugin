@@ -1,14 +1,14 @@
 # opencode-anthropic-user-agent-plugin
 
-Portable OpenCode plugin that overrides Anthropic `User-Agent` handling for:
+Portable OpenCode plugin that injects a configurable Anthropic `User-Agent` for:
 
 - Claude Pro/Max OAuth login
 - OAuth token refresh
 - Anthropic prompt/message requests
 - Anthropic API key creation
-- Anthropic-compatible custom providers via `chat.headers`
 
-The plugin is meant for users who need to change the Anthropic-facing `User-Agent`
+The plugin works by patching `fetch` inside the OpenCode process for requests
+to Anthropic hosts, so it can affect both auth traffic and normal model I/O
 without patching OpenCode's cached plugin files by hand.
 
 ## Install
@@ -43,8 +43,7 @@ If unset, the plugin uses the Safari string above by default.
 
 ## Notes
 
-- This plugin reimplements the Anthropic OAuth auth hook so it can control the
-  headers used during login and refresh.
-- It also applies the same `User-Agent` to Anthropic message traffic.
-- If OpenCode changes its internal Anthropic auth flow in a future release,
-  this plugin may need to be updated to stay in sync.
+- The plugin targets `api.anthropic.com`, `console.anthropic.com`, and `claude.ai`.
+- It intentionally avoids patching unrelated hosts.
+- Because it patches `fetch`, it should be compatible with OpenCode's built-in
+  Anthropic auth plugin instead of replacing it.
