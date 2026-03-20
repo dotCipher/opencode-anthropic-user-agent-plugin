@@ -31,15 +31,23 @@ If you are developing locally, symlink or copy `index.js` into:
 - `~/.config/opencode/plugins/`
 - or `.opencode/plugins/`
 
-## Configure
+## Default behavior
 
-Set the outgoing user-agent string with an environment variable:
+By default, the plugin uses this Safari/macOS user-agent automatically:
+
+```text
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15
+```
+
+No environment variable is required.
+
+## Override
+
+If you want a different value, override it with an environment variable:
 
 ```sh
 export OPENCODE_ANTHROPIC_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15'
 ```
-
-If unset, the plugin uses the Safari string above by default.
 
 ## Notes
 

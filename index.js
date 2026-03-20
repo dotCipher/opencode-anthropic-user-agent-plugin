@@ -77,7 +77,10 @@ function patchFetch() {
  * Portable OpenCode plugin that injects a configurable User-Agent into fetch
  * requests targeting Anthropic endpoints.
  *
- * Configuration:
+ * Default:
+ *   Uses the built-in Safari/macOS user-agent above.
+ *
+ * Override:
  *   OPENCODE_ANTHROPIC_USER_AGENT='your user agent'
  */
 export const AnthropicUserAgentPlugin = async () => {
